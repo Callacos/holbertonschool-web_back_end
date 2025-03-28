@@ -5,45 +5,31 @@ export default class Car {
 	  this.color = color;
 	}
   
-	// Brand getter and setter
 	get brand() {
 	  return this._brand;
 	}
   
-	set brand(value) {
-	  if (typeof value !== 'string') {
-		throw new TypeError('Brand must be a string');
-	  }
-	  this._brand = value;
+	set brand(val) {
+	  this._brand = val;
 	}
   
-	// Motor getter and setter
 	get motor() {
 	  return this._motor;
 	}
   
-	set motor(value) {
-	  if (typeof value !== 'string') {
-		throw new TypeError('Motor must be a string');
-	  }
-	  this._motor = value;
+	set motor(val) {
+	  this._motor = val;
 	}
   
-	// Color getter and setter
 	get color() {
 	  return this._color;
 	}
   
-	set color(value) {
-	  if (typeof value !== 'string') {
-		throw new TypeError('Color must be a string');
-	  }
-	  this._color = value;
+	set color(val) {
+	  this._color = val;
 	}
   
-	// Clone method using structuredClone for deep copy
 	cloneCar() {
-	  return structuredClone(this);
+	  return new this.constructor();
 	}
   }
-  
