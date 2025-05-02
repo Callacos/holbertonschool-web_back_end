@@ -12,7 +12,7 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
 
 
 class Server:
-    """Classe serveur pour paginer une base de données de prénoms populaires."""
+    """Classe serveur pour paginer une base de données."""
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
