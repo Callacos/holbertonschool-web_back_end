@@ -1,23 +1,44 @@
 #!/usr/bin/env python3
-"""Script that provides stats about Nginx logs stored in MongoDB"""
+"""
+Provides statistics about Nginx logs stored in MongoDB:
+- Total number of logs
+- Number of logs for each HTTP method
+- Number of logs with method=GET and path=/status
+"""
 
 from pymongo import MongoClient
 
-if __name__ == "__main__":
+
+def task_12():
+    """Connect to MongoDB and display log statistics."""
     client = MongoClient()
-    db = client.logs
-    collection = db.nginx
+    collec = client.logs.nginx
 
-    total_logs = collection.count_documents({})
-    print(f"{total_logs} logs")
+    # Count total number of log documents
+    nb_logs = collec.count_documents({})
 
-print("Methods:")
-for method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
-    count = collection.count_documents({"method": method})
-    print(f"\tmethod {method}: {count}")
+    # Count by HTTP method
+    get = collec.count_documents({"method": "GET"})
+    post = collec.count_documents({"method": "POST"})
+    put = collec.count_documents({"method": "PUT"})
+    patch = collec.count_documents({"method": "PATCH"})
+    delete = collec.count_documents({"method": "DELETE"})
 
-status_check = collection.count_documents({
-    "method": "GET",
-    "path": "/status"
-})
-print(f"{status_check} status check")
+    # Count GET requests to /status
+    status = collec.count_documents({"method": "GET", "path": "/status"})
+
+    # Print results
+    print(f'{nb_logs} logs')
+    print('Methods:')
+    print(f'\tmethod GET: {get}')
+    print(f'\tmethod POST: {post}')
+    print(f'\tmethod PUT: {put}')
+    print(f'\tmethod PATCH: {patch}')
+    print(f'\tmethod DELETE: {delete}')
+    print(f'{status} status check')
+
+    client.close()
+
+
+if __name__ == "__main__":
+    task_12()
