@@ -1,11 +1,19 @@
+#!/usr/bin/env python3
+"""Module pour lister tous les documents d'une collection MongoDB."""
+
+
 def list_all(mongo_collection):
     """
-    Liste tous les documents d'une collection MongoDB.
+    Liste tous les documents présents dans une collection MongoDB.
 
     Args:
-        mongo_collection: Objet collection pymongo.
+        mongo_collection: Objet collection de pymongo.
 
     Returns:
-        Liste de documents ou liste vide si la collection est vide.
+        Une liste contenant tous les documents de la collection,
+        ou une liste vide si la collection est vide ou None.
     """
-    return list(mongo_collection.find()) if mongo_collection else []
+    if mongo_collection is None:
+        return []
+
+    return list(mongo_collection.find())
