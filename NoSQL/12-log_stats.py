@@ -30,13 +30,12 @@ def task_12():
     # Print results
     print(f'{nb_logs} logs')
     print('Methods:')
-    print(f'\tmethod GET: {get}')
-    print(f'\tmethod POST: {post}')
-    print(f'\tmethod PUT: {put}')
-    print(f'\tmethod PATCH: {patch}')
-    print(f'\tmethod DELETE: {delete}')
+    print(f'\tmethod POST: {post}'.expandtabs(4))
+    print(f'\tmethod PUT: {put}'.expandtabs(4))
+    print(f'\tmethod PATCH: {patch}'.expandtabs(4))
+    print(f'\tmethod GET: {get}'.expandtabs(4))
+    print(f'\tmethod DELETE: {delete}'.expandtabs(4))
     print(f'{status} status check')
-
     client.close()
 
 
