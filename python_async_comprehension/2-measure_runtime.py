@@ -1,20 +1,17 @@
 #!/usr/bin/env python3
 """docstring for measure_runtime"""
-
 import asyncio
 import time
-from typing import List
 async_comprehension = __import__('1-async_comprehension').async_comprehension
 
 
 async def measure_runtime() -> float:
-    """ measure the runtime of async_comprehension"""
-    start_time = time.time()
-    await asyncio.gather(
-        async_comprehension(),
-        async_comprehension(),
-        async_comprehension(),
-        async_comprehension()
-    )
-    end_time = time.time()
-    return end_time - start_time
+    """docstring for measure_runtime"""
+    task = []
+    timestart = time.time()
+    for _ in range(4):
+        task.append(async_comprehension())
+    await asyncio.gather(*task)
+    timeend = time.time()
+    restime = timeend - timestart
+    return restime
