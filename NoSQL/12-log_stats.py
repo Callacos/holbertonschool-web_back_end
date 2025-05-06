@@ -9,8 +9,7 @@ Provides statistics about Nginx logs stored in MongoDB:
 from pymongo import MongoClient
 
 
-def task_12():
-    """Connect to MongoDB and display log statistics."""
+if __name__ == "__main__":
     client = MongoClient()
     collec = client.logs.nginx
 
@@ -37,7 +36,3 @@ def task_12():
     print(f'\tmethod DELETE: {delete}'.expandtabs(4))
     print(f'{status} status check')
     client.close()
-
-
-if __name__ == "__main__":
-    task_12()
