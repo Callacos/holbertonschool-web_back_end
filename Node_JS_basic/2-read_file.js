@@ -8,11 +8,12 @@ function countStudents(path) {
       .split('\n')
       .filter((line) => line.trim() !== '');
 
-    if (lines.length <= 1) return;
-
     const students = lines.slice(1);
-    const fields = {};
+    console.log(`Number of students: ${students.length}`);
 
+    if (students.length === 0) return;
+
+    const fields = {};
     for (const student of students) {
       const parts = student.split(',');
       const firstname = parts[0];
@@ -23,8 +24,6 @@ function countStudents(path) {
       }
       fields[field].push(firstname);
     }
-
-    console.log(`Number of students: ${students.length}`);
 
     for (const field in fields) {
       const list = fields[field];
